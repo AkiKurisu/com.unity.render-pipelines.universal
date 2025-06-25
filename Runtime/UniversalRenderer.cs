@@ -39,13 +39,15 @@ namespace UnityEngine.Rendering.Universal
     /// </summary>
     public sealed partial class UniversalRenderer : ScriptableRenderer
     {
-        #if UNITY_SWITCH || UNITY_ANDROID
-        const GraphicsFormat k_DepthStencilFormat = GraphicsFormat.D24_UNorm_S8_UInt;
-        const int k_DepthBufferBits = 24;
-        #else
+        // @IllusionRP Start: Keeps high depth format in mobile platform since ssr/ssao/hiz need it.
+        // #if UNITY_SWITCH || UNITY_ANDROID
+        // const GraphicsFormat k_DepthStencilFormat = GraphicsFormat.D24_UNorm_S8_UInt;
+        // const int k_DepthBufferBits = 24;
+        // #else
         const GraphicsFormat k_DepthStencilFormat = GraphicsFormat.D32_SFloat_S8_UInt;
         const int k_DepthBufferBits = 32;
-        #endif
+        // #endif
+        // @IllusionRP End
 
         const int k_FinalBlitPassQueueOffset = 1;
         const int k_AfterFinalBlitPassQueueOffset = k_FinalBlitPassQueueOffset + 1;
@@ -1146,8 +1148,13 @@ namespace UnityEngine.Rendering.Universal
                 depthDescriptor.msaaSamples = 1;
                 RenderingUtils.ReAllocateIfNeeded(ref m_MotionVectorDepth, depthDescriptor, FilterMode.Point, TextureWrapMode.Clamp, name: "_MotionVectorDepthTexture");
 
-                m_MotionVectorPass.Setup(m_MotionVectorColor, m_MotionVectorDepth);
-                EnqueuePass(m_MotionVectorPass);
+                // @IllusionRP Start: Move to prepass in forward.
+                if (renderingModeActual != RenderingMode.Deferred)
+                {
+                    m_MotionVectorPass.Setup(m_MotionVectorColor, m_MotionVectorDepth);
+                    EnqueuePass(m_MotionVectorPass);
+                }
+                // @IllusionRP End
             }
 
 #if ADAPTIVE_PERFORMANCE_2_1_0_OR_NEWER
