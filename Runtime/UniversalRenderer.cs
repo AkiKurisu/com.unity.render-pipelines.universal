@@ -39,14 +39,9 @@ namespace UnityEngine.Rendering.Universal
     /// </summary>
     public sealed partial class UniversalRenderer : ScriptableRenderer
     {
-        // @IllusionRP Start: Keeps high depth format in mobile platform since ssr/ssao/hiz need it.
-        // #if UNITY_SWITCH || UNITY_ANDROID
-        // const GraphicsFormat k_DepthStencilFormat = GraphicsFormat.D24_UNorm_S8_UInt;
-        // const int k_DepthBufferBits = 24;
-        // #else
+        // @IllusionRP Start: Keeps 32-bit format in mobile platform to prevent z-fighting.
         const GraphicsFormat k_DepthStencilFormat = GraphicsFormat.D32_SFloat_S8_UInt;
         const int k_DepthBufferBits = 32;
-        // #endif
         // @IllusionRP End
 
         const int k_FinalBlitPassQueueOffset = 1;
