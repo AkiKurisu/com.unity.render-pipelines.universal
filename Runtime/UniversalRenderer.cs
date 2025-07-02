@@ -1142,14 +1142,9 @@ namespace UnityEngine.Rendering.Universal
                 depthDescriptor.graphicsFormat = GraphicsFormat.None;
                 depthDescriptor.msaaSamples = 1;
                 RenderingUtils.ReAllocateIfNeeded(ref m_MotionVectorDepth, depthDescriptor, FilterMode.Point, TextureWrapMode.Clamp, name: "_MotionVectorDepthTexture");
-
-                // @IllusionRP Start: Move to prepass in forward rendering path.
-                if (renderingModeActual == RenderingMode.Deferred)
-                {
-                    m_MotionVectorPass.Setup(m_MotionVectorColor, m_MotionVectorDepth);
-                    EnqueuePass(m_MotionVectorPass);
-                }
-                // @IllusionRP End
+                
+                m_MotionVectorPass.Setup(m_MotionVectorColor, m_MotionVectorDepth);
+                EnqueuePass(m_MotionVectorPass);
             }
 
 #if ADAPTIVE_PERFORMANCE_2_1_0_OR_NEWER
