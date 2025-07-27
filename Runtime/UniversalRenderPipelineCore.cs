@@ -1177,6 +1177,9 @@ namespace UnityEngine.Rendering.Universal
 
         /// <summary> Keyword used for ACES Tonemapping. </summary>
         public const string TonemapACES = "_TONEMAP_ACES";
+        
+        /// <summary> Keyword used for ACES Tonemapping. </summary>
+        public const string TonemapUnrealACES = "_TONEMAP_UNREAL_ACES";
 
         /// <summary> Keyword used for Neutral Tonemapping. </summary>
         public const string TonemapNeutral = "_TONEMAP_NEUTRAL";
