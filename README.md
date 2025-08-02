@@ -1,4 +1,4 @@
-# AkiKurisu Universal Render Piplines
+# AkiKurisu Universal Render Pipelines
 
 This is a fork of universal render pipelines from [Unity Graphics](https://github.com/Unity-Technologies/Graphics) for self-usage.
 

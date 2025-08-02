@@ -25,5 +25,9 @@
       "description": "Collection of scenes showcasing different features of the Universal Render Pipeline.",
       "path": "Samples~/URPPackageSamples"
     }
-  ]
+  ],
+  "author": {
+    "name": "AkiKurisu",
+    "url": "https://github.com/AkiKurisu/com.unity.render-pipelines.universal.git"
+  }
 }
