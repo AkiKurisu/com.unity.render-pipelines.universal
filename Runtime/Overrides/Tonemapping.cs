@@ -24,9 +24,6 @@ namespace UnityEngine.Rendering.Universal
         /// Note that if you use this tonemapper all the grading operations will be done in the ACES color spaces for optimal precision and results.
         /// </summary>
         ACES, // ACES Filmic reference tonemapper (custom approximation)
-        
-        [InspectorName("Unreal ACES")]
-        Unreal_ACES,
     }
 
     /// <summary>
@@ -75,22 +72,6 @@ namespace UnityEngine.Rendering.Universal
         /// </summary>
         [Tooltip("Select a tonemapping algorithm to use for the color grading process.")]
         public TonemappingModeParameter mode = new TonemappingModeParameter(TonemappingMode.None);
-        
-        // Unreal ACES.
-        [Tooltip("Film_Slope")]
-        public ClampedFloatParameter slope = new ClampedFloatParameter(0.88f, 0f, 1f);
-        
-        [Tooltip("Film_Toe")]
-        public ClampedFloatParameter toe = new ClampedFloatParameter(0.55f, 0.0f, 1.0f);
-
-        [Tooltip("Film_Shoulder")]
-        public ClampedFloatParameter shoulder = new ClampedFloatParameter(0.26f, 0.0f, 1.0f);
-
-        [Tooltip("Film_BlackClip")]
-        public ClampedFloatParameter blackClip = new ClampedFloatParameter(0.0f, 0.0f, 1.0f);
-
-        [Tooltip("Film_WhiteClip")]
-        public ClampedFloatParameter whiteClip = new ClampedFloatParameter(0.04f, 0.0f, 1.0f);
 
         // -- HDR Output options --
 

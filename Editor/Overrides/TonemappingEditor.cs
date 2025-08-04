@@ -6,13 +6,6 @@ namespace UnityEditor.Rendering.Universal
     sealed class TonemappingEditor : VolumeComponentEditor
     {
         SerializedDataParameter m_Mode;
-        
-        // Unreal ACES.
-        SerializedDataParameter m_Slope;
-        SerializedDataParameter m_Toe;
-        SerializedDataParameter m_Shoulder;
-        SerializedDataParameter m_BlackClip;
-        SerializedDataParameter m_WhiteClip;
 
         // HDR Mode.
         SerializedDataParameter m_NeutralHDRRangeReductionMode;
@@ -39,12 +32,6 @@ namespace UnityEditor.Rendering.Universal
             m_HDRMinNits = Unpack(o.Find(x => x.minNits));
             m_HDRMaxNits = Unpack(o.Find(x => x.maxNits));
             m_HDRAcesPreset = Unpack(o.Find(x => x.acesPreset));
-            
-            m_Slope = Unpack(o.Find(x => x.slope));
-            m_Toe = Unpack(o.Find(x => x.toe));
-            m_Shoulder = Unpack(o.Find(x => x.shoulder));
-            m_BlackClip = Unpack(o.Find(x => x.blackClip));
-            m_WhiteClip = Unpack(o.Find(x => x.whiteClip));
         }
 
         public override void OnInspectorGUI()
@@ -57,15 +44,6 @@ namespace UnityEditor.Rendering.Universal
             {
                 EditorGUILayout.HelpBox("Tonemapping should only be used when working with High Dynamic Range (HDR). Please enable HDR through the active Render Pipeline Asset.", MessageType.Warning);
                 return;
-            }
-            
-            if ( m_Mode.value.intValue == (int)TonemappingMode.Unreal_ACES)
-            {
-                PropertyField(m_Slope);
-                PropertyField(m_Toe);
-                PropertyField(m_Shoulder);
-                PropertyField(m_BlackClip);
-                PropertyField(m_WhiteClip);
             }
 
             if (PlayerSettings.allowHDRDisplaySupport && m_Mode.value.intValue != (int)TonemappingMode.None)

@@ -216,12 +216,6 @@ namespace UnityEngine.Rendering.Universal.Internal
                 material.SetTexture(ShaderConstants._CurveHueVsSat, curves.hueVsSat.value.GetTexture());
                 material.SetTexture(ShaderConstants._CurveLumVsSat, curves.lumVsSat.value.GetTexture());
                 material.SetTexture(ShaderConstants._CurveSatVsSat, curves.satVsSat.value.GetTexture());
-                
-                material.SetFloat(ShaderConstants.FilmSlope, (float)tonemapping.slope);
-                material.SetFloat(ShaderConstants.FilmToe, (float)tonemapping.toe);
-                material.SetFloat(ShaderConstants.FilmShoulder, (float)tonemapping.shoulder);
-                material.SetFloat(ShaderConstants.FilmBlackClip, (float)tonemapping.blackClip);
-                material.SetFloat(ShaderConstants.FilmWhiteClip, (float)tonemapping.whiteClip);
 
                 // Tonemapping (baked into the lut for HDR)
                 if (hdr)
@@ -232,7 +226,6 @@ namespace UnityEngine.Rendering.Universal.Internal
                     {
                         case TonemappingMode.Neutral: material.EnableKeyword(ShaderKeywordStrings.TonemapNeutral); break;
                         case TonemappingMode.ACES: material.EnableKeyword(allowColorGradingACESHDR ? ShaderKeywordStrings.TonemapACES : ShaderKeywordStrings.TonemapNeutral); break;
-                        case TonemappingMode.Unreal_ACES: material.EnableKeyword(allowColorGradingACESHDR ? ShaderKeywordStrings.TonemapUnrealACES : ShaderKeywordStrings.TonemapNeutral); break;
                         default: break; // None
                     }
 
@@ -326,13 +319,6 @@ namespace UnityEngine.Rendering.Universal.Internal
             public static readonly int _CurveHueVsSat = Shader.PropertyToID("_CurveHueVsSat");
             public static readonly int _CurveLumVsSat = Shader.PropertyToID("_CurveLumVsSat");
             public static readonly int _CurveSatVsSat = Shader.PropertyToID("_CurveSatVsSat");
-                        
-            // Unreal ACES.
-            public static readonly int FilmSlope = Shader.PropertyToID("FilmSlope");
-            public static readonly int FilmToe = Shader.PropertyToID("FilmToe");
-            public static readonly int FilmShoulder = Shader.PropertyToID("FilmShoulder");
-            public static readonly int FilmBlackClip = Shader.PropertyToID("FilmBlackClip");
-            public static readonly int FilmWhiteClip = Shader.PropertyToID("FilmWhiteClip");
         }
     }
 }

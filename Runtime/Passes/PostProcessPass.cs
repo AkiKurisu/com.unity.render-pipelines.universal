@@ -1312,15 +1312,8 @@ namespace UnityEngine.Rendering.Universal
                 {
                     case TonemappingMode.Neutral: material.EnableKeyword(ShaderKeywordStrings.TonemapNeutral); break;
                     case TonemappingMode.ACES: material.EnableKeyword(ShaderKeywordStrings.TonemapACES); break;
-                    case TonemappingMode.Unreal_ACES: material.EnableKeyword(ShaderKeywordStrings.TonemapUnrealACES); break;
                     default: break; // None
                 }
-                
-                material.SetFloat(ShaderConstants.FilmSlope, (float)m_Tonemapping.slope);
-                material.SetFloat(ShaderConstants.FilmToe, (float)m_Tonemapping.toe);
-                material.SetFloat(ShaderConstants.FilmShoulder, (float)m_Tonemapping.shoulder);
-                material.SetFloat(ShaderConstants.FilmBlackClip, (float)m_Tonemapping.blackClip);
-                material.SetFloat(ShaderConstants.FilmWhiteClip, (float)m_Tonemapping.whiteClip);
             }
         }
 
@@ -1714,13 +1707,6 @@ namespace UnityEngine.Rendering.Universal
 
             public static int[] _BloomMipUp;
             public static int[] _BloomMipDown;
-            
-            // Unreal ACES.
-            public static readonly int FilmSlope = Shader.PropertyToID("FilmSlope");
-            public static readonly int FilmToe = Shader.PropertyToID("FilmToe");
-            public static readonly int FilmShoulder = Shader.PropertyToID("FilmShoulder");
-            public static readonly int FilmBlackClip = Shader.PropertyToID("FilmBlackClip");
-            public static readonly int FilmWhiteClip = Shader.PropertyToID("FilmWhiteClip");
         }
 
 #endregion
